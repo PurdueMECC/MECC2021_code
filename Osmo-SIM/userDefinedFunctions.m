@@ -52,12 +52,12 @@ P_Back = (Recovery1+Recovery2)*eta_gen;
 SEC_final = (WECPower-P_Back)/Q_p_avg/3600/1000 %net power consumed/permeate produced
 NREL = 2.8; 
 Interview = 3.18;
-x = categorical({'Osmocean-Gen', 'WEC-RO', 'Elec-RO', 'Osmocean'});
-x = reordercats(x, {'Osmocean-Gen', 'WEC-RO', 'Elec-RO', 'Osmocean'});
-y = [SEC_final NREL Interview SEC];
+x = categorical({'WPBRO', 'WEC-RO', 'Elec-RO'});
+x = reordercats(x, {'WPBRO', 'WEC-RO', 'Elec-RO'});
+y = [SEC_final NREL Interview];
 bar(x,y, 'FaceColor', [0.9290, 0.6940, 0.1250])
-ylabel('SEC')
-title('Reported vs. Osmocean SEC')
+ylabel('SEC kWhr/m^3')
+title('Reported vs. WPBRO SEC')
 
 
 %% LCOW
@@ -68,7 +68,7 @@ WEC_CapEx_array = 100*WEC_CapEx;
 WEC_OpEx_array = 100*WEC_OpEx;
 CapRO = Q_p_avg_m3_day;
 CapRO_array = 100*CapRO;
-BatchelorsBudget_array = 107238.01*Q_p_avg_m3_day;
+BatchelorsBudget_array = (102238.01+33343.2)*Q_p_avg_m3_day;
 capFac = 0.49; 
 capexRO = BatchelorsBudget_array; % CapEx budget for 100 m^3/day BRO plant
 AWP = CapRO*capFac*365;
@@ -82,7 +82,7 @@ manage = 66000*Nm; % Management labor costs
 spare = 0.04*AWP_array; % Spare parts
 pre = 0.03*AWP_array; % Pretreatment
 post = 0.01*AWP_array; % Posttreatment
-memb = 1.2*0.07*AWP_array; % Membranes
+memb = 0.07*AWP_array; % Membranes
 ins = 0.005*capexRO; % Insurance
 
 CostBack = P_Back*100*8e-5*8760; %W * $/Whr * hr/year
@@ -118,9 +118,9 @@ time = F_WEC.time;
 
 %Shaft Speed (redundant)
 figure()
-plot(time, n.data, 'b-', 'LineWidth', 1.04)
+plot(time, n.data, 'Color', [0,0.4,0], 'LineWidth', 1.04)
 hold on
-yline(n_shaft_ref_m, 'r--', 'LineWidth', 1.04)
+yline(n_shaft_ref_m, 'k--', 'LineWidth', 1.04)
 title('Shaft Speed vs. Time')
 xlabel('Time (sec)')
 ylabel('Shaft Speed (rps)')
@@ -131,9 +131,9 @@ set(0, 'DefaultFigureColor', 'w')
 
 %piston Pressure
 figure()
-plot(time, p_h.data/1e6, 'b-', 'LineWidth', 1.04)
-hold on
-plot(time, p_c.data/1e6, 'r-', 'LineWidth', 1.04)
+plot(time, p_h.data/1e6, 'g-', 'LineWidth', 1.04)
+% hold on
+% plot(time, p_c.data/1e6, 'r-', 'LineWidth', 1.04)
 title('WEC Piston Pressure = Accumulator Pressure vs. Time')
 xlabel('Time (sec)')
 ylabel('Pressure (MPa)')
@@ -143,7 +143,7 @@ hold on
 yline(21, 'k--')
 hold on
 yline(11, 'k--')
-legend('p_h', 'p_c', 'Location', 'northeast', 'Orientation', 'horizontal', 'Box', 'off');
+legend('p_h', 'Location', 'northeast', 'Orientation', 'horizontal', 'Box', 'off');
 set(0, 'DefaultFigureColor', 'w')
 
 % Valve Areas
@@ -212,7 +212,7 @@ plot(time, P_mvalve_flow.data/1e6, 'c-', 'LineWidth', 1.04)
 title('Flow Power vs. Time')
 xlabel('Time (sec)')
 ylabel('Flow Power (MW)')
-legend('WEC','Motor','High Pressure Pump','Kidney Valve','Motor Valve', 'Location', 'northoutside', 'Orientation', 'horizontal', 'Box', 'off');
+legend('WEC','Motor','High Pressure Pump','Kidney FCD','Main FCD', 'Location', 'northoutside', 'Orientation', 'horizontal', 'Box', 'off');
 xlim([0 400*tFactor])
 
 

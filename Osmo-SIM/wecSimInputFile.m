@@ -11,8 +11,8 @@ simu.explorer = 'off';
 %% Wave Information
 %Irregular Waves using PM Spectrum
 waves = waveClass('irregular'); %always do REGULAR FIRST to determine the number of modules
-waves.H = 1.25; %m
-waves.T = 7.25; %sec
+waves.H = 3; %m
+waves.T = 11; %sec
 waves.spectrumType = 'PM';
 waves.phaseSeed=1;
 eta_gen = 0.85;

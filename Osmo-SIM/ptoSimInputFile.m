@@ -42,8 +42,8 @@ eta_cp = 0.65;                     %mechanical efficiency of CP
 
 %% Membrane Sizing Parameters
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Q_in_avg = .014;                % Average input flowrate (m^3).  Measured after simulation, input here.
-n_par = 320;                        %Number of membranes in parallel
+Q_in_avg = .022;                % Average input flowrate (m^3).  Measured after simulation, input here.
+n_par = 450;                        %Number of membranes in parallel
 n_ser = 1;                         %Number of membranes in series
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
